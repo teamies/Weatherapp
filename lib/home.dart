@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:my_weather/Models/seach.dart';
 import 'package:my_weather/components/myappbartext.dart';
 import 'package:my_weather/components/mydrawer.dart';
 import 'package:my_weather/components/myicon.dart';
@@ -14,6 +15,8 @@ import 'package:my_weather/screens/hourly.dart';
 import 'package:my_weather/screens/search.dart';
 
 class Home extends StatefulWidget {
+  late Town town;
+  Home({required this.town});
   @override
   State<Home> createState() => _HomeState();
 }
@@ -26,6 +29,7 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
     _controller = new Controller();
+    print('load home');
   }
 
   @override
@@ -34,7 +38,7 @@ class _HomeState extends State<Home> {
         drawer: MyDrawer(),
         appBar: AppBar(
           backgroundColor: const Color(0xff123EB9),
-          title: MyAppBarText(),
+          title: MyAppBarText(cityName: this.widget.town.name),
           actions: [
             IconButton(
               onPressed: () async {
@@ -56,7 +60,7 @@ class _HomeState extends State<Home> {
                     fit: BoxFit.cover,
                     image: AssetImage("assets/img/imgThienNhien1.jpg"))),
             child: FutureBuilder(
-              future: _controller.getData(2.3, 2.1),
+              future: _controller.getData(this.widget.town),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   // _controller.getHourly();
@@ -69,11 +73,11 @@ class _HomeState extends State<Home> {
                             temp: _controller.getTemDaily(),
                           ),
                           HourlyScreen(hourly: _controller.gethourly()),
-                          CurrentDetail(
-                            currentWeather: _controller.get_current(),
-                            dailyWeather: _controller.getDaily(),
-                          ),
-                          DailyScreen(daily: _controller.getDaily()),
+                          // CurrentDetail(
+                          //   currentWeather: _controller.get_current(),
+                          //   dailyWeather: _controller.getDaily(),
+                          // ),
+                          // DailyScreen(daily: _controller.getDaily()),
                         ],
                       )
                     ],

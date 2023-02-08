@@ -1,7 +1,7 @@
 class Town {
   final String name, country, state;
   final Map<String, dynamic> localNames;
-  final double lat,lon;
+  final double lat, lon;
 
   Town({
     required this.name,
@@ -11,7 +11,7 @@ class Town {
     required this.country,
     required this.state,
   });
-
+  
   factory Town.fromJson(Map<String, dynamic> json) {
     return Town(
       name: json['name'],
@@ -22,4 +22,15 @@ class Town {
       state: json['state'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+  return {
+    'name': name,
+    'local_names': localNames,
+    'lat': lat,
+    'lon': lon,
+    'country': country,
+    'state': state,
+  };
+}
 }

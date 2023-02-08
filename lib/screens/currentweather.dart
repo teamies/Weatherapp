@@ -13,7 +13,6 @@ class CurrentWeatherScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 40, bottom: 40),
-      height: MediaQuery.of(context).size.height / 4.8,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
