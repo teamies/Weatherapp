@@ -53,26 +53,30 @@ class CurrentDetail extends StatelessWidget {
     int? time,
   }) {
     return Expanded(
-        child: Container(
-      decoration: BoxDecoration(
-          color: Color.fromARGB(255, 16, 4, 59).withOpacity(0.7),
-          borderRadius: BorderRadius.circular(15)),
-      padding: EdgeInsets.all(15),
-      child: Row(children: [
-        Image.asset(
-          'assets/img/imgweather/${(sunset) ? 'sunset.png' : 'sunrise'}',
-          width: 50,
-        ),
-        Expanded(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      child: Container(
+        decoration: BoxDecoration(
+            color: Color.fromARGB(255, 16, 4, 59).withOpacity(0.7),
+            borderRadius: BorderRadius.circular(15)),
+        padding: EdgeInsets.all(15),
+        child: Row(
           children: [
-            MyText.baseText(text: text!, size: 14),
-            MyText.hourText(text: time!)
-          ],
-        )),
-      ]),
-    ));
+            Image.asset(
+              'assets/img/imgweather/${(sunset) ? 'sunset.png' : 'sunrise'}',
+              width: 50,
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MyText.baseText(text: text!, size: 14),
+                  MyText.hourText(text: time!)
+                ],
+              )
+            ),
+          ]
+        ),
+      )
+    );
   }
 
   Widget humidity() {
@@ -82,6 +86,7 @@ class CurrentDetail extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
+              height: 250,
                 decoration: BoxDecoration(
                     color: Color.fromARGB(255, 16, 4, 59).withOpacity(0.7),
                     borderRadius: BorderRadius.circular(20)),
@@ -117,7 +122,8 @@ class CurrentDetail extends StatelessWidget {
                               ],
                               pointers: <GaugePointer>[
                                 NeedlePointer(
-                                  value: this.currentWeather.humidity.toDouble(),
+                                  value:
+                                      this.currentWeather.humidity.toDouble(),
                                   needleColor: Colors.blue.shade400,
                                   needleLength: 0.8,
                                   needleEndWidth: 2.5,
@@ -131,7 +137,13 @@ class CurrentDetail extends StatelessWidget {
                               annotations: <GaugeAnnotation>[
                                 GaugeAnnotation(
                                     widget: Container(
-                                        child: MyText.baseText(text: this.currentWeather.humidity.toString()+ " %", color: colorblueShade400 )),
+                                        child: MyText.baseText(
+                                            text: this
+                                                    .currentWeather
+                                                    .humidity
+                                                    .toString() +
+                                                " %",
+                                            color: colorblueShade400)),
                                     angle: 90,
                                     positionFactor: 0.5)
                               ])
@@ -143,84 +155,84 @@ class CurrentDetail extends StatelessWidget {
             width: 15,
           ),
           Expanded(
-              child: Container(
-            height: 200,
-            decoration: BoxDecoration(
+            child: Container(
+              height: 250,
+              // height: double.infinity,
+              decoration: BoxDecoration(
                 color: Color.fromARGB(255, 16, 4, 59).withOpacity(0.7),
                 borderRadius: BorderRadius.circular(20)),
-            padding: EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                iconAndText(
-                  mainAxisAlignment: MainAxisAlignment.start,
+              padding: EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  iconAndText(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     icon: FontAwesomeIcons.cloud,
                     lable: 'Mây che phủ',
-                    value: this.currentWeather.clouds.toString()+ "%"),
-                // SizedBox(
-                //   height: 8,
-                // ),
-                iconAndText(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                    value: this.currentWeather.clouds.toString() + "%"),
+                  // SizedBox(
+                  //   height: 8,
+                  // ),
+                  iconAndText(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     icon: FontAwesomeIcons.droplet,
                     lable: 'Lượng mưa',
                     value: '20m'),
-                iconAndText(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  iconAndText(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     icon: FontAwesomeIcons.eye,
-                    lable: 'Dự báo ' + this.currentWeather.visibility.toString(),
+                    lable:
+                        'Dự báo ' + this.currentWeather.clouds.toString() +'mm',
                     value: "Trong 24h tới")
-              ],
-            ),
-          )),
+                ],
+              ),
+            )
+          ),
         ],
       ),
     );
   }
 
- 
-  Widget uvi(){
+  Widget uvi() {
     return Container(
-      margin: EdgeInsets.only(bottom: 35),
-      child: Row(
-        children: [
+        margin: EdgeInsets.only(bottom: 35),
+        child: Row(children: [
           Expanded(
-            child: Container(
-              height: 200,
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 16, 4, 59).withOpacity(0.7),
-                borderRadius: BorderRadius.circular(20)),
-              padding: EdgeInsets.only(top: 15),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          MyText.baseText(text: 'Chỉ số tia cực tím'),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child:  MyText.baseText(text: this.currentWeather.uvi.toString()),
-                          ),
-                          UVCondition(this.currentWeather.uvi.toDouble()),
-                        ],
-                      ),
-                    ]
-                  ),
-                ]
-              )
-            )
-          ),
+              child: Container(
+                  height: 230,
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 16, 4, 59).withOpacity(0.7),
+                      borderRadius: BorderRadius.circular(20)),
+                  padding: EdgeInsets.only(top: 15),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  MyText.baseText(text: 'Chỉ số tia cực tím'),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: MyText.baseText(
+                                        text:
+                                            this.currentWeather.uvi.toString()),
+                                  ),
+                                  UVCondition(
+                                      this.currentWeather.uvi.toDouble()),
+                                ],
+                              ),
+                            ]),
+                      ]))),
           SizedBox(
             width: 15,
           ),
           Expanded(
               child: Container(
-            height: 200,
+            height: 230,
             decoration: BoxDecoration(
                 color: Color.fromARGB(255, 16, 4, 59).withOpacity(0.7),
                 borderRadius: BorderRadius.circular(20)),
@@ -229,106 +241,115 @@ class CurrentDetail extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 iconAndText(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     icon: FontAwesomeIcons.temperatureEmpty,
                     lable: 'Nhiệt độ khí quyển',
-                    value: this.currentWeather.dewPoint.toStringAsFixed(0)+"\u00b0"),
+                    value: this.currentWeather.dewPoint.toStringAsFixed(0) +
+                        "\u00b0"),
                 iconAndText(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     icon: FontAwesomeIcons.eye,
                     lable: 'Tầm Nhìn',
-                    value: this.currentWeather.visibility.toString()+"m"),
+                    value: this.currentWeather.visibility.toString() + "m"),
                 iconAndText(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     icon: FontAwesomeIcons.moon,
                     lable: 'Dáng trăng',
-                    value: this.dailyWeather[0].moonPhase
-                    )
+                    value: this.dailyWeather[0].moonPhase)
               ],
             ),
           )),
-        ]
-      )
-    );
+        ]));
   }
 
-  Widget windPressure(){
+  Widget windPressure() {
     return Container(
-      margin: const EdgeInsets.only( bottom: 35),
-      padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 16, 4, 59).withOpacity(0.7),
-        borderRadius: BorderRadius.circular(20)),
-      child: Column(
-        children: [
-          Container(
-            height: 30,
-            decoration: const BoxDecoration(
-                border: Border(
-                    bottom:BorderSide(width: 1, color: Colors.white))),
-            child: Row(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                MyText.baseText(text: 'Gió và áp suất')
-              ],
+        margin: const EdgeInsets.only(bottom: 35),
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 16, 4, 59).withOpacity(0.7),
+            borderRadius: BorderRadius.circular(20)),
+        child: Column(
+          children: [
+            Container(
+              height: 30,
+              decoration: const BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(width: 1, color: Colors.white))),
+              child: Row(
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [MyText.baseText(text: 'Gió và áp suất')],
+              ),
             ),
+            Container(
+              height: 130,
+              padding: const EdgeInsets.only(top: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Icon(
+                    FontAwesomeIcons.wind,
+                    size: 100,
+                    color: Colors.white,
+                  ),
+                  Column(
+                    children: [
+                      MyText.baseText(
+                          text: this.currentWeather.windDeg.toString()),
+                      MyText.baseText(
+                          text:
+                              this.currentWeather.windSpeed.toString() + ' m/s')
+                    ],
+                  ),
+                  // ignore: prefer_const_constructors
+                  Spacer(
+                    flex: 1,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      MyText.baseText(text: 'Áp suất'),
+                      MyText.baseText(
+                          text:
+                              this.currentWeather.pressure.toString() + " hPa")
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ));
+  }
+
+  Widget iconAndText(
+      {MainAxisAlignment? mainAxisAlignment,
+      IconData? icon,
+      String? lable,
+      String? value}) {
+    return Expanded(
+      child: Row(
+        mainAxisAlignment: mainAxisAlignment!,
+        children: [
+          FaIcon(
+            icon,
+            size: 20,
+            color: Colors.white,
           ),
-          Container(
-            height: 130,
-            padding: const EdgeInsets.only(top: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          SizedBox(
+            width: 15,
+          ),
+          Expanded(
+            child: Column(
               children: [
-                const Icon(
-                  FontAwesomeIcons.wind,
-                  size: 100,
-                  color: Colors.white,
-                ),
-                Column(
-                  children: [
-                    MyText.baseText(text: this.currentWeather.windDeg.toString()),
-                    MyText.baseText(text: this.currentWeather.windSpeed.toString()+' m/s')
-                  ],
-                ),
-                // ignore: prefer_const_constructors
-                Spacer(
-                  flex: 1,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    MyText.baseText(text: 'Áp suất'),
-                      MyText.baseText(text: this.currentWeather.pressure.toString()+ " hPa")
-                  ],
-                )
+                MyText.baseText(text: lable!, size: 16),
+                MyText.baseText(text: value!, size: 16)
               ],
             ),
           )
         ],
-      )
+      ),
     );
   }
-
-  Widget iconAndText({MainAxisAlignment? mainAxisAlignment, IconData? icon, String? lable, String? value}) {
-    return Row(
-      mainAxisAlignment: mainAxisAlignment!,
-      children: [
-        FaIcon(
-          icon,
-          size: 20,
-          color: Colors.white,
-        ),
-        SizedBox(width: 15,),
-        Column(
-          children: [
-            MyText.baseText(text: lable!, size: 16),
-            MyText.baseText(text: value!, size: 16)
-          ],
-        )
-      ],
-    );
-  }  
-
 
   static UVCondition(num uvi) {
     if (uvi >= 0 && uvi <= 2) {
@@ -349,9 +370,9 @@ class CurrentDetail extends StatelessWidget {
           children: [
             MyText.baseText(text: 'Cao'),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MyText.baseText(text: 'Cần ở trong bóng râm vào giữa trưa')
-            )
+                padding: const EdgeInsets.all(8.0),
+                child:
+                    MyText.baseText(text: 'Cần ở trong bóng râm vào giữa trưa'))
           ],
         ),
       );
@@ -363,9 +384,8 @@ class CurrentDetail extends StatelessWidget {
           children: [
             MyText.baseText(text: 'Rất cao'),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MyText.baseText(text: 'Tránh ra ngoài vào giữa trưa')
-            )
+                padding: const EdgeInsets.all(8.0),
+                child: MyText.baseText(text: 'Tránh ra ngoài vào giữa trưa'))
           ],
         ),
       );
@@ -376,10 +396,10 @@ class CurrentDetail extends StatelessWidget {
         child: Column(
           children: [
             MyText.baseText(text: 'Cực kỳ cao'),
-             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MyText.baseText(text: 'rất nguy hiểm, nguy cơ làm tổn thương da, mắt')
-            )
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: MyText.baseText(
+                    text: 'rất nguy hiểm, nguy cơ làm tổn thương da, mắt'))
           ],
         ),
       );
@@ -387,5 +407,3 @@ class CurrentDetail extends StatelessWidget {
     return uvi;
   }
 }
-
-

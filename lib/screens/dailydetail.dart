@@ -106,7 +106,7 @@ class _DailyDetailState extends State<DailyDetail>
                 crossAxisCount: 2,
                 // crossAxisSpacing: 5,
                 mainAxisSpacing: 5,
-                childAspectRatio: 2.8,
+                childAspectRatio: 2.0,
                 children: List.generate(
                   _menulist.length,
                   (index) {
@@ -114,15 +114,16 @@ class _DailyDetailState extends State<DailyDetail>
                       margin: EdgeInsets.all(20),
                       width: double.infinity,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          iconAndText(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              icon: _menulist[index]['icon'],
-                              lable: _menulist[index]['lable'],
-                              value: _menulist[index]['value']),
-                        ],
-                      ),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            iconAndText(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  icon: _menulist[index]['icon'],
+                                  lable: _menulist[index]['lable'],
+                                  value: _menulist[index]['value']),
+                          ],
+                        ),
                     );
                   },
                 ),
@@ -170,12 +171,15 @@ class _DailyDetailState extends State<DailyDetail>
 
 
   Widget iconAndText(
-      {MainAxisAlignment? mainAxisAlignment,
+      {
+        // MainAxisAlignment? mainAxisAlignment,
+      CrossAxisAlignment? crossAxisAlignment,
       IconData? icon,
       String? lable,
       String? value}) {
     return Row(
-      mainAxisAlignment: mainAxisAlignment!,
+      // mainAxisAlignment: mainAxisAlignment!,
+      crossAxisAlignment: crossAxisAlignment!,
       children: [
         FaIcon(
           icon,
@@ -185,11 +189,13 @@ class _DailyDetailState extends State<DailyDetail>
         SizedBox(
           width: 15,
         ),
-        Column(
-          children: [
-            MyText.baseText(text: lable!, size: 16),
-            MyText.baseText(text: value!, size: 16)
-          ],
+        Expanded(
+          child: Column(
+            children: [
+              MyText.baseText(text: lable!, size: 16),
+              MyText.baseText(text: value!, size: 16)
+            ],
+          ),
         )
       ],
     );

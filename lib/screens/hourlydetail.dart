@@ -57,14 +57,12 @@ class _HourlyDetailState extends State<HourlyDetail>
       {'lable': 'Tốc độ gió', 'icon':FontAwesomeIcons.wineGlass, 'value': this.widget.hourly[i].windSpeed. toString()+'m/s'},
       {'lable': 'Sức gió tối đa', 'icon': FontAwesomeIcons.wind, 'value': this.widget.hourly[i].windGust. toString()+'m/s'},
       {'lable': 'Hướng gió', 'icon': FontAwesomeIcons.compass, 'value': this.widget.hourly[i].clouds. toString()},
-
       {'lable': 'Lượng Mưa', 'icon': FontAwesomeIcons.cloudShowersHeavy, 'value':  this.widget.hourly[i].clouds. toString()},
       {'lable': 'Xác suất mưa', 'icon':FontAwesomeIcons.compass, 'value':  this.widget.hourly[i].clouds. toString()},
       {'lable': 'Khả năng tuyết', 'icon':FontAwesomeIcons.snowman, 'value':  this.widget.hourly[i].clouds. toString()},
       {'lable': 'Tuyết', 'icon': FontAwesomeIcons.snowflake, 'value': 'null'},
       {'lable': 'Khả năng mưa đá', 'icon':FontAwesomeIcons.cloudRain, 'value': 'null'},
       {'lable': 'mưa đá', 'icon': FontAwesomeIcons.cloudRain, 'value': 'null'},
-
       ];
       tabs.add(Container(
         decoration: BoxDecoration(
@@ -96,24 +94,26 @@ class _HourlyDetailState extends State<HourlyDetail>
               SliverGrid.count(
                 crossAxisCount: 2,
                 // crossAxisSpacing: 5,
-                mainAxisSpacing: 5,
-                childAspectRatio: 2.8,
+                mainAxisSpacing: 6,
+                childAspectRatio: 2,
                 children: List.generate(
                   _menu.length,
                   (index) {
                     return Container(
-                      margin: EdgeInsets.all(20),
-                      width: double.infinity,
+                      margin: EdgeInsets.all(15),
+                      width: MediaQuery.of(context).size.width / 2.0,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          iconAndText(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              icon: _menu[index]['icon'],
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            iconAndText(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  // crossAxisAlignment: CrossAxisAlignment.center,
+                                 icon: _menu[index]['icon'],
                               lable: _menu[index]['lable'],
                               value: _menu[index]['value']),
-                        ],
-                      ),
+                          ],
+                        ),
+                      
                     );
                   },
                 ),
@@ -179,11 +179,13 @@ class _HourlyDetailState extends State<HourlyDetail>
         SizedBox(
           width: 15,
         ),
-        Column(
-          children: [
-            MyText.baseText(text: lable!, size: 16),
-            MyText.baseText(text: value!, size: 16)
-          ],
+        Expanded(
+          child: Column(
+            children: [
+              MyText.baseText(text: lable!, size: 16),
+              MyText.baseText(text: value!, size: 16)
+            ],
+          ),
         )
       ],
     );
