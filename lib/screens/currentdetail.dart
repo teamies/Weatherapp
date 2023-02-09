@@ -176,6 +176,7 @@ class CurrentDetail extends StatelessWidget {
                   // ),
                   iconAndText(
                     mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     icon: FontAwesomeIcons.droplet,
                     lable: 'Lượng mưa',
                     value: '20m'),
@@ -321,14 +322,16 @@ class CurrentDetail extends StatelessWidget {
         ));
   }
 
-  Widget iconAndText(
+   Widget iconAndText(
       {MainAxisAlignment? mainAxisAlignment,
+      CrossAxisAlignment? crossAxisAlignment,
       IconData? icon,
       String? lable,
       String? value}) {
     return Expanded(
       child: Row(
         mainAxisAlignment: mainAxisAlignment!,
+        crossAxisAlignment: crossAxisAlignment!,
         children: [
           FaIcon(
             icon,

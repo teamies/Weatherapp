@@ -12,9 +12,11 @@ class MyText {
       dynamic size = 18,
       FontWeight fontWeight = FontWeight.w500,
       String color = cnf.colorWhite,
+      TextAlign? textAlign,
       TextDecoration? decoration}) {
     return Text(
       text,
+      textAlign: textAlign,
       style: TextStyle(
           decoration: decoration,
           fontSize: size.toDouble(),

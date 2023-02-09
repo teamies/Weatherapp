@@ -65,7 +65,7 @@ class _BlankState extends State<Blank> {
             ),
             Container(
               padding: EdgeInsets.only(left: 20, right: 20),
-              child: MyText.baseText(text: "Bạn phải có ít nhất một vị trí để dự báo thời tiết")),
+              child: MyText.baseText(text: "Bạn phải có ít nhất một vị trí để dự báo thời tiết", textAlign: TextAlign.center)),
             TextButton(
               onPressed: () async {
                 Navigator.push(
