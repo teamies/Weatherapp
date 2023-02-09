@@ -27,12 +27,12 @@ class Local {
   /**
    * if value = false get list[0] else get all
    */
-  Future<dynamic> getList({bool value = true}) async {
+  Future<List<dynamic>> getList({bool value = true}) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.remove('town_list');
+    // prefs.remove('town_list');
     final data = prefs.getString('town_list');
     if (data != null) {
-      return (value) ? jsonDecode(data) : jsonDecode(data)[0];
+      return jsonDecode(data);
     }
     return [];
   }
