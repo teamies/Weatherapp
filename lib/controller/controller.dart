@@ -22,16 +22,15 @@ class Controller {
    * Trường hợp không cần API
    */
 
-  Future<Response> getData(double lat, double lon) async {
-    final contents = await rootBundle.loadString('assets/db.json');
-    this._response.result = jsonDecode(contents);
-    return this._response;
-  }
+  // Future<Response> getData(double lat, double lon) async {
+  //   final contents = await rootBundle.loadString('assets/db.json');
+  //   this._response.result = jsonDecode(contents);
+  //   return this._response;
+  // }
 
-  /*
-  Future<Response> getData(double lat, double lon) async {
+  Future<Response> getData(Town town) async {
     final response = await http.get(Uri.parse(
-        'https://api.openweathermap.org/data/2.5/onecall?lat=21.592477&lon=105.8435398&units=metric&appid=ac2e59088cbe65dddd76cc799a3f7efb'));
+        'https://api.openweathermap.org/data/2.5/onecall?lat=${town.lat}&lon=${town.lon}&units=metric&appid=ac2e59088cbe65dddd76cc799a3f7efb'));
     if (response.statusCode == 200) {
       this._response.result = jsonDecode(response.body);
     } else {
@@ -39,7 +38,6 @@ class Controller {
     }
     return this._response;
   }
-  */
 
   CurrentWeather get_current() {
     CurrentWeather currentWeather =
