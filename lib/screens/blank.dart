@@ -32,11 +32,15 @@ class _BlankState extends State<Blank> {
           title: MyText.baseText(text: 'Thời Tiết Địa Phương'),
           actions: [
             IconButton(
-              onPressed: () async {
-                await Navigator.push(
+              onPressed: () {
+                Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => searchView()),
-                );
+                ).then((value) {
+                  setState(() {
+
+                  });
+                });
               },
               icon: MyIcon(icon: Icons.add_circle_outline),
             ),

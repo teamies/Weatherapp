@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:my_weather/components/myicon.dart';
 import 'package:my_weather/components/mytext.dart';
+import 'package:my_weather/screens/listcty.dart';
 import 'package:my_weather/screens/test.dart';
 
 class MyDrawer extends StatelessWidget {
   final List<dynamic> _menu = [
     {'title': 'Trang chủ', 'icon': Icons.home, 'view': Test()},
-    {'title': 'Chỉnh sửa vị trí', 'icon': Icons.map, 'view': null},
+    {'title': 'Chỉnh sửa vị trí', 'icon': Icons.map, 'view': ListCity()},
     {'title': 'ABC', 'icon': Icons.map, 'view': null},
   ];
 

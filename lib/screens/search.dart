@@ -98,11 +98,12 @@ class _searchViewState extends State<searchView> {
                                 itemBuilder: (context, index) {
                                   return TextButton(
                                     child: Text(snapshot.data![index].name),
-                                    onPressed: () {
-                                      _localStorage
+                                    onPressed: () async {
+                                      await _localStorage
                                           .addToList(snapshot.data![index]);
-                                      Navigator.of(context, rootNavigator: true)
-                                          .pop();
+                                      // Navigator.of(context, rootNavigator: true)
+                                      //     .pop();
+                                      Navigator.pushNamed(context, '/');
                                     },
                                   );
                                 },

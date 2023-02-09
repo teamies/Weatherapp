@@ -1,5 +1,5 @@
 class Temp {
-  double day,min,max,night,eve,morn;
+  double day, min, max, night, eve, morn;
   Temp({
     required this.day,
     required this.min,
@@ -15,7 +15,7 @@ class Temp {
       min: json['min'],
       max: json['max'],
       night: json['night'],
-      eve: json['eve'],
+      eve: json['eve'].toDouble(),
       morn: json['morn'],
     );
   }

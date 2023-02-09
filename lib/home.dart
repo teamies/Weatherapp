@@ -38,7 +38,10 @@ class _HomeState extends State<Home> {
         drawer: MyDrawer(),
         appBar: AppBar(
           backgroundColor: const Color(0xff123EB9),
-          title: MyAppBarText(cityName: this.widget.town.name),
+          title: MyAppBarText(
+              cityName: (this.widget.town.localNames['vi'] != null)
+                  ? this.widget.town.localNames['vi']
+                  : this.widget.town.name),
           actions: [
             IconButton(
               onPressed: () async {
@@ -73,11 +76,11 @@ class _HomeState extends State<Home> {
                             temp: _controller.getTemDaily(),
                           ),
                           HourlyScreen(hourly: _controller.gethourly()),
-                          // CurrentDetail(
-                          //   currentWeather: _controller.get_current(),
-                          //   dailyWeather: _controller.getDaily(),
-                          // ),
-                          // DailyScreen(daily: _controller.getDaily()),
+                          CurrentDetail(
+                            currentWeather: _controller.get_current(),
+                            dailyWeather: _controller.getDaily(),
+                          ),
+                          DailyScreen(daily: _controller.getDaily()),
                         ],
                       )
                     ],

@@ -57,14 +57,15 @@ class Daily {
       feelsLike: FeelsLike.fromJson(json['feels_like']),
       pressure: json['pressure'],
       humidity: json['humidity'],
-      dewPoint: json['dew_point'],
+      dewPoint: json['dew_point'].toDouble(),
       windSpeed: json['wind_speed'],
       windDeg: json['wind_deg'],
       windGust: json['wind_gust'],
-      weather: (json['weather'] as List).map((i) => Weather.fromJson(i)).toList(),
+      weather:
+          (json['weather'] as List).map((i) => Weather.fromJson(i)).toList(),
       clouds: json['clouds'],
       pop: json['pop'].toDouble(),
-      rain: json['rain'],
+      rain: (json['rain'] != null) ? json['rain'].toDouble() : 0.0,
       uvi: json['uvi'].toDouble(),
     );
   }
@@ -72,13 +73,14 @@ class Daily {
   static moonPhaseCondition(num moonPhase) {
     if (moonPhase == 0 && moonPhase == 1) {
       return ' Trăng non';
-    } else if (0 < moonPhase && moonPhase < 0.25 || 0.75 < moonPhase && moonPhase < 1) {
+    } else if (0 < moonPhase && moonPhase < 0.25 ||
+        0.75 < moonPhase && moonPhase < 1) {
       return 'Trăng lưỡi liềm';
-    } else if (0.25 == moonPhase ) {
+    } else if (0.25 == moonPhase) {
       return 'Bán nguyệt đầu tháng';
-    }else if (0.75 == moonPhase ) {
+    } else if (0.75 == moonPhase) {
       return 'Bán nguyệt cuối tháng';
-    }else if (0.5 == moonPhase ) {
+    } else if (0.5 == moonPhase) {
       return 'Trăng tròn';
     }
     return 'Trăng khuyết';

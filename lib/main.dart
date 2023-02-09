@@ -4,15 +4,21 @@ import 'package:my_weather/core/local.dart';
 import 'package:my_weather/home.dart';
 import 'package:my_weather/screens/blank.dart';
 
-void main() {
-  Local local = Local();
-  runApp(const MyApp());
+
+void main() async {
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() {
+    return _MyApp();
+  }
+}
 
-  // This widget is the root of your application.
+class _MyApp extends State<MyApp>
+{
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,32 +27,21 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: LoadingScreen(),
+      initialRoute: '/',
+      routes: <String, WidgetBuilder>{
+        '/': (context) => initScreen(),
+      }
     );
   }
-}
 
-class LoadingScreen extends StatefulWidget {
-  @override
-  State<LoadingScreen> createState() => _LoadingScreenState();
-}
-
-class _LoadingScreenState extends State<LoadingScreen> {
-  bool check = true;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget initScreen()
+  {
     return FutureBuilder(
         future: Local().getList(value: false),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            if (snapshot.data.length > 0) {
-              Town _town = Town.fromJson(snapshot.data);
+            if (snapshot.data!.length > 0) {
+              Town _town = Town.fromJson(snapshot.data![0]);
               return Home(
                 town: _town,
               );
