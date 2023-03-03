@@ -30,7 +30,8 @@ class Controller {
 
   Future<Response> getData(Town town) async {
     final response = await http.get(Uri.parse(
-        'https://api.openweathermap.org/data/2.5/onecall?lat=${town.lat}&lon=${town.lon}&units=metric&appid=ac2e59088cbe65dddd76cc799a3f7efb'));
+        // 'https://api.openweathermap.org/data/2.5/onecall?lat=${town.lat}&lon=${town.lon}&units=metric&appid=ac2e59088cbe65dddd76cc799a3f7efb&lang=vi'));
+        'https://api.openweathermap.org/data/2.5/onecall?lat=${town.lat}&lon=${town.lon}&units=metric&appid=0b02ee1c6dd9dafd7a2a8a0780323cc2&lang=vi'));
     if (response.statusCode == 200) {
       this._response.result = jsonDecode(response.body);
     } else {

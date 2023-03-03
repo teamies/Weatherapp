@@ -5,7 +5,9 @@ import 'dart:math' as math;
 import 'package:my_weather/Models/daily.dart';
 import 'package:my_weather/components/mytext.dart';
 import 'package:my_weather/components/myweatherimg.dart';
+import 'package:my_weather/core/icon.dart';
 import 'package:my_weather/screens/dailydetail.dart';
+import 'package:swipeable_page_route/swipeable_page_route.dart';
 
 class DailyScreen extends StatelessWidget {
   final List<Daily> daily;
@@ -25,6 +27,7 @@ class DailyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     miny = [
       this.daily[0].temp.min,
       this.daily[1].temp.min,
@@ -36,22 +39,21 @@ class DailyScreen extends StatelessWidget {
       this.daily[7].temp.min,
     ].reduce(math.min) -
     5;
-    miny = [
-      this.daily[0].temp.max,
-      this.daily[1].temp.max,
-      this.daily[2].temp.max,
-      this.daily[3].temp.max,
-      this.daily[4].temp.max,
-      this.daily[5].temp.max,
-      this.daily[6].temp.max,
-      this.daily[7].temp.max,
-    ].reduce(math.min) -
-    5;
+    // maxy = [
+    //   this.daily[0].temp.max,
+    //   this.daily[1].temp.max,
+    //   this.daily[2].temp.max,
+    //   this.daily[3].temp.max,
+    //   this.daily[4].temp.max,
+    //   this.daily[5].temp.max,
+    //   this.daily[6].temp.max,
+    //   this.daily[7].temp.max,
+    // ].reduce(math.max) +
+    // 5;
 
+    print(maxy);
     print(this.daily[0].dt);
     print(this.daily[1].dt);
-    print(MyText.dayText(text: this.daily[0].dt));
-    print(MyText.hourText(text: this.daily[0].dt));
     return Column(
       children: [
         Row(
@@ -61,7 +63,7 @@ class DailyScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    SwipeablePageRoute(
                         builder: (context) => DailyDetail(
                               daily: this.daily,
                             )),
@@ -328,6 +330,10 @@ class DailyScreen extends StatelessWidget {
   }
 
   Widget topTitleWidgets(double value, TitleMeta meta) {
+    // bool checkDay = true;
+    final  date = ((DateTime.now().millisecondsSinceEpoch)/1000).toInt();
+    // final date = 1676293200;
+    bool checkDay = date > (this.daily[0].sunrise) && date < (this.daily[0].sunset);
     Widget text;
     switch (value.toInt()) {
       case 0:
@@ -335,17 +341,16 @@ class DailyScreen extends StatelessWidget {
           children: [
             MyText.baseText(text:  DateFormat.E('vi').format(DateTime.now())),
             MyText.dayText(text: this.daily[0].dt),
-           Container(
-              width: 70,
-              height: 70,
-              child: MyWeatherImg(
-                name: this.daily[0].weather[0].icon,
-              )),
             // Container(
-            //   height: 40,
             //   width: 40,
-            //   child: icond0,
-            // )
+            //   height: 40,
+            //   child:
+            //    MyWeatherImg(
+            //     name: this.daily[0].weather[0].icon,
+            //   )
+            //   getIconPlatForm(check, this.daily[0].weather[0].description)
+            // ),
+            imgweather(getIconPlatForm(checkDay, this.daily[0].weather[0].description))
           ],
         );
         break;
@@ -354,12 +359,7 @@ class DailyScreen extends StatelessWidget {
           children: [
            MyText.baseText(text:  DateFormat.E('vi').format(DateTime.now().add(Duration(days: 1)))),
             MyText.dayText(text: this.daily[1].dt),
-            Container(
-              width: 70,
-              height: 70,
-              child: MyWeatherImg(
-                name: this.daily[1].weather[0].icon,
-              )),
+            imgweather(getIconPlatForm(checkDay, this.daily[1].weather[0].description))
           ],
         );
         break;
@@ -368,12 +368,7 @@ class DailyScreen extends StatelessWidget {
           children: [
             MyText.baseText(text:  DateFormat.E('vi').format(DateTime.now().add(Duration(days: 2)))),
             MyText.dayText(text: this.daily[2].dt),
-            Container(
-              width: 70,
-              height: 70,
-              child: MyWeatherImg(
-                name: this.daily[2].weather[0].icon,
-              )),
+            imgweather(getIconPlatForm(checkDay, this.daily[2].weather[0].description))
           ],
         );
         break;
@@ -382,12 +377,7 @@ class DailyScreen extends StatelessWidget {
           children: [
             MyText.baseText(text:  DateFormat.E('vi').format(DateTime.now().add(Duration(days: 3)))),
             MyText.dayText(text: this.daily[3].dt),
-            Container(
-              width: 70,
-              height: 70,
-              child: MyWeatherImg(
-                name: this.daily[3].weather[0].icon,
-              )),
+           imgweather(getIconPlatForm(checkDay, this.daily[3].weather[0].description))
           ],
         );
         break;
@@ -396,12 +386,7 @@ class DailyScreen extends StatelessWidget {
           children: [
             MyText.baseText(text:  DateFormat.E('vi').format(DateTime.now().add(Duration(days: 4)))),
             MyText.dayText(text: this.daily[4].dt),
-            Container(
-              width: 70,
-              height: 70,
-              child: MyWeatherImg(
-                name: this.daily[4].weather[0].icon,
-              )),
+            imgweather(getIconPlatForm(checkDay, this.daily[4].weather[0].description))
           ],
         );
         break;
@@ -410,12 +395,7 @@ class DailyScreen extends StatelessWidget {
           children: [
             MyText.baseText(text:  DateFormat.E('vi').format(DateTime.now().add(Duration(days: 5)))),
             MyText.dayText(text: this.daily[5].dt),
-            Container(
-              width: 70,
-              height: 70,
-              child: MyWeatherImg(
-                name: this.daily[5].weather[0].icon,
-              )),
+            imgweather(getIconPlatForm(checkDay, this.daily[5].weather[0].description))
           ],
         );
         break;
@@ -424,12 +404,7 @@ class DailyScreen extends StatelessWidget {
           children: [
             MyText.baseText(text:  DateFormat.E('vi').format(DateTime.now().add(Duration(days: 6)))),
             MyText.dayText(text: this.daily[6].dt),
-            Container(
-              width: 70,
-              height: 70,
-              child: MyWeatherImg(
-                name: this.daily[6].weather[0].icon,
-              )),
+            imgweather(getIconPlatForm(checkDay, this.daily[6].weather[0].description))
           ],
         );
         break;
@@ -438,12 +413,7 @@ class DailyScreen extends StatelessWidget {
           children: [
             MyText.baseText(text:  DateFormat.E('vi').format(DateTime.now().add(Duration(days: 7)))),
             MyText.dayText(text: this.daily[7].dt),
-            Container(
-              width: 70,
-              height: 70,
-              child: MyWeatherImg(
-                name: this.daily[7].weather[0].icon,
-              )),
+            imgweather(getIconPlatForm(checkDay, this.daily[7].weather[0].description))
           ],
         );
         break;
@@ -456,5 +426,18 @@ class DailyScreen extends StatelessWidget {
       axisSide: meta.axisSide,
       child: text,
     );
+  }
+
+  Widget imgweather(Widget img){
+    return Container(
+              margin: EdgeInsets.only( top: 10),
+              width: 40,
+              height: 40,
+              child: 
+              // MyWeatherImg(
+              //   name: this.daily[2].weather[0].icon,
+              // )
+              img
+            );
   }
 }

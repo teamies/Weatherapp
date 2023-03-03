@@ -3,6 +3,7 @@ import 'package:my_weather/Models/currentweather.dart';
 import 'package:my_weather/Models/temp.dart';
 import 'package:my_weather/components/mytext.dart';
 import 'package:my_weather/components/myweatherimg.dart';
+import 'package:my_weather/core/icon.dart';
 
 class CurrentWeatherScreen extends StatelessWidget {
   final CurrentWeather weather;
@@ -11,6 +12,7 @@ class CurrentWeatherScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool check = true;
     return Container(
       margin: EdgeInsets.only(top: 40, bottom: 40),
       child: Column(
@@ -22,9 +24,12 @@ class CurrentWeatherScreen extends StatelessWidget {
               Container(
                   height: 100,
                   width: 100,
-                  child: MyWeatherImg(
-                    name: this.weather.weather[0].icon,
-                  )),
+                  child: 
+                  // MyWeatherImg(
+                  //   name: this.weather.weather[0].icon,
+                  // )
+                  getIconPlatForm(check, this.weather.weather[0].description)
+                ),
               Padding(
                   padding: EdgeInsets.only(left: 25),
                   child: MyText.temp(temp: this.weather.temp, size: 50))

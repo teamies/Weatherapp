@@ -11,12 +11,12 @@ class Temp {
 
   factory Temp.fromJson(Map<String, dynamic> json) {
     return Temp(
-      day: json['day'],
-      min: json['min'],
-      max: json['max'],
-      night: json['night'],
+      day: json['day'].toDouble(),
+      min: json['min']. toDouble(),
+      max: json['max'].toDouble(),
+      night: json['night'].toDouble(),
       eve: json['eve'].toDouble(),
-      morn: json['morn'],
+      morn: json['morn'].toDouble(),
     );
   }
 }

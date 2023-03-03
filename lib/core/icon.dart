@@ -10,59 +10,57 @@ import 'package:flutter/material.dart';
  * 
  * @return Image 
  */
-Widget getIconPlatForm(bool check, String condition) {
+
+Widget getIconPlatForm(bool checkDay, String condition) {
   Image img;
   switch (condition) {
-    case "Thunderstorm":
-      img = (check)
-          ? Image.asset('assets/img/imgweather/Thunderstorm.png')
-          : Image.asset('assets/img/imgweather/Thunderstorm.png');
+    //Thunderstorm
+    case "Dông":
+      img =  Image.asset('assets/img/imgweather/Thunderstorm.png');
       break;
-    case "light rain":
-      img = (check)
-          ? Image.asset('assets/img/imgweather/lightRain_n.png')
-          : Image.asset('assets/img/imgweather/lightRain_d.png');
+      //light rain
+    case "mưa nhẹ":
+      img = (checkDay)
+          ? Image.asset('assets/img/imgweather/lightRain_d.png')
+          : Image.asset('assets/img/imgweather/lightRain_n.png');
       break;
-    case "moderate rain":
-      img = (check)
-          ? Image.asset('assets/img/imgweather/moderateRain.png')
-          : Image.asset('assets/img/imgweather/moderateRain.png');
+    //moderate rain
+    case "mưa vừa":
+      img =  Image.asset('assets/img/imgweather/moderateRain.png');
       break;
-    case "Snow":
-      img = (check)
-          ? Image.asset('assets/img/imgweather/snow.png')
-          : Image.asset('assets/img/imgweather/snow.png');
+    //Snow
+    case "tuyết":
+      img = Image.asset('assets/img/imgweather/snow.png');
       break;
-    case "few clouds":
-      img = (check)
-          ? Image.asset('assets/img/imgweather/fewclouds_n.png')
-          : Image.asset('assets/img/imgweather/fewclouds_d.png');
+    //few clouds
+    case "mây thưa":
+      img = (checkDay)
+          ? Image.asset('assets/img/imgweather/fewclouds_d.png')
+          : Image.asset('assets/img/imgweather/fewclouds_n.png');
       break;
-    case "scattered clouds":
-      img = (check)
-          ? Image.asset('assets/img/imgweather/fewclouds_n.png')
-          : Image.asset('assets/img/imgweather/scatteredclouds_d.png');
+    //scattered clouds
+    case "mây rải rác":
+      img = (checkDay)
+          ? Image.asset('assets/img/imgweather/scatteredclouds_d.png')
+          : Image.asset('assets/img/imgweather/fewclouds_n.png');
       break;
-    case "broken clouds":
-      img = (check)
-          ? Image.asset('assets/img/imgweather/brokenclouds.png')
-          : Image.asset('assets/img/imgweather/brokenclouds.png');
+    //broken clouds
+    case "mây cụm":
+      img = Image.asset('assets/img/imgweather/brokenclouds.png');
       break;
-    case "overcast clouds":
-      img = (check)
-          ? Image.asset('assets/img/imgweather/overcastclouds.png')
-          : Image.asset('assets/img/imgweather/overcastclouds.png');
+    //overcast clouds
+    case "mây đen u ám":
+      img = Image.asset('assets/img/imgweather/overcastclouds.png');
       break;
-    case "clear sky":
-      img = (check)
-          ? Image.asset('assets/img/imgweather/clearSky_n.png')
-          : Image.asset('assets/img/imgweather/clearSky_d.png');
+    //clear sky
+    case "bầu trời quang đãng":
+      img = (checkDay)
+          ? Image.asset('assets/img/imgweather/clearSky_d.png')
+          : Image.asset('assets/img/imgweather/clearSky_n.png');
       break;
 
     default:
-      img = (check)
-          ? Image.asset('assets/img/imgweather/brokenclouds.png')
-          : Image.asset('assets/img/imgweather/brokenclouds.png');
+      img = Image.asset('assets/img/imgweather/brokenclouds.png');
   }
 
   return Padding(padding: const EdgeInsets.only(top: 5), child: img);

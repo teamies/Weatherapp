@@ -42,6 +42,9 @@ dependencies:
   font_awesome_flutter: ^10.3.0
   fl_chart: ^0.55.2
   shared_preferences: ^2.0.17
+  animated_button_bar: ^0.0.2+1
+  flutter_switch: ^0.3.2
+  swipeable_page_route: ^0.3.0
 
 dev_dependencies:
   flutter_test:

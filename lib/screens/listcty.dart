@@ -33,12 +33,23 @@ class _ListCityState extends State<ListCity> {
                 ),
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.only(bottom: 10, left: 15),
+                  padding: EdgeInsets.only(bottom: 10,),
                   decoration: BoxDecoration(
                       border: Border(
                           bottom:
                               BorderSide(width: .3, color: Colors.white70))),
-                  child: MyText.baseText(text: 'Danh Sách Thành Phố', size: 16),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
+                        color: Colors.white,
+                        icon: Icon(Icons.arrow_back_rounded)),
+                      MyText.baseText(text: 'Danh Sách Thành Phố', size: 20),
+                    ],
+                  ),
                 ),
                 Expanded(
                     child: Container(

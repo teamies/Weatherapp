@@ -55,6 +55,7 @@ class _HomeState extends State<Home> {
           ],
         ),
         body: Container(
+          // height: double.infinity,
             padding:
                 const EdgeInsets.only(top: 10, bottom: 20, left: 10, right: 10),
             // color: Colors.blue.shade200,
@@ -75,7 +76,10 @@ class _HomeState extends State<Home> {
                             weather: _controller.get_current(),
                             temp: _controller.getTemDaily(),
                           ),
-                          HourlyScreen(hourly: _controller.gethourly()),
+                          HourlyScreen(
+                            hourly: _controller.gethourly(),
+                            daily: _controller.getDaily(),
+                            ),
                           CurrentDetail(
                             currentWeather: _controller.get_current(),
                             dailyWeather: _controller.getDaily(),
@@ -86,7 +90,9 @@ class _HomeState extends State<Home> {
                     ],
                   );
                 } else {
-                  return LinearProgressIndicator();
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
               },
             )));

@@ -97,7 +97,7 @@ class _searchViewState extends State<searchView> {
                                 itemCount: snapshot.data?.length,
                                 itemBuilder: (context, index) {
                                   return TextButton(
-                                    child: Text(snapshot.data![index].name),
+                                    child: MyText.baseText(text: snapshot.data![index].name),
                                     onPressed: () async {
                                       await _localStorage
                                           .addToList(snapshot.data![index]);

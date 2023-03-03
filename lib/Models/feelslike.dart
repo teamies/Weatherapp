@@ -5,10 +5,10 @@ class FeelsLike {
 
   factory FeelsLike.fromJson(Map<String, dynamic> json) {
     return FeelsLike(
-      day: json['day'],
-      night: json['night'],
+      day: json['day'].toDouble(),
+      night: json['night'].toDouble(),
       eve: json['eve'],
-      morn: json['morn'],
+      morn: json['morn'].toDouble(),
     );
   }
 }

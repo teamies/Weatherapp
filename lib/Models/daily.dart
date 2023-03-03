@@ -1,6 +1,7 @@
 import 'package:my_weather/Models/feelslike.dart';
 import 'package:my_weather/Models/temp.dart';
 import 'package:my_weather/Models/weather.dart';
+import 'package:my_weather/core/convert.dart';
 
 class Daily {
   int dt;
@@ -15,7 +16,7 @@ class Daily {
   int humidity;
   double dewPoint;
   double windSpeed;
-  int windDeg;
+  String windDeg;
   double windGust;
   List<Weather> weather;
   int clouds;
@@ -58,14 +59,14 @@ class Daily {
       pressure: json['pressure'],
       humidity: json['humidity'],
       dewPoint: json['dew_point'].toDouble(),
-      windSpeed: json['wind_speed'],
-      windDeg: json['wind_deg'],
+      windSpeed: json['wind_speed'].toDouble(),
+      windDeg: windDegCondition(json['wind_deg']),
       windGust: json['wind_gust'],
       weather:
           (json['weather'] as List).map((i) => Weather.fromJson(i)).toList(),
       clouds: json['clouds'],
       pop: json['pop'].toDouble(),
-      rain: (json['rain'] != null) ? json['rain'].toDouble() : 0.0,
+      rain: (json['rain'] != null) ? json['rain'].toDouble() : 0,
       uvi: json['uvi'].toDouble(),
     );
   }

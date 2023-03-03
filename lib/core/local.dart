@@ -29,6 +29,7 @@ class Local {
    */
   Future<List<dynamic>> getList({bool value = true}) async {
     final prefs = await SharedPreferences.getInstance();
+    //mở ra đê xóa dl
     // prefs.remove('town_list');
     final data = prefs.getString('town_list');
     if (data != null) {

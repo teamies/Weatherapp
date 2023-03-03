@@ -1,5 +1,6 @@
 import 'package:my_weather/Models/rain.dart';
 import 'package:my_weather/Models/weather.dart';
+import 'package:my_weather/core/convert.dart';
 
 class Hourly {
   int dt;
@@ -12,9 +13,10 @@ class Hourly {
   int clouds;
   int visibility;
   double windSpeed;
-  int windDeg;
+  String windDeg;
   double windGust;
   List<Weather> weather;
+  Rain? rain;
   double pop;
 
   Hourly({
@@ -31,6 +33,7 @@ class Hourly {
     required this.windDeg,
     required this.windGust,
     required this.weather,
+    required this.rain,
     required this.pop,
   });
 
@@ -46,11 +49,15 @@ class Hourly {
       clouds: json['clouds'],
       visibility: json['visibility'],
       windSpeed: json['wind_speed'].toDouble(),
-      windDeg: json['wind_deg'],
+      windDeg: windDegCondition(json['wind_deg']),
       windGust: json['wind_gust'].toDouble(),
       weather:
           (json['weather'] as List).map((i) => Weather.fromJson(i)).toList(),
+      // rain:Rain.fromJson(json['rain']),
+      rain : json['rain'] != null ? Rain.fromJson(json['rain']) : null ,
+      
       pop: json['pop'].toDouble(),
+      
     );
   }
 }

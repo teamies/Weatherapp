@@ -14,7 +14,7 @@ class Weather {
       id: json['id'],
       main: json['main'],
       description: json['description'],
-      icon: json['icon'],
+      icon: (json['icon']!= null)?json['icon']:'',
     );
   }
 }
