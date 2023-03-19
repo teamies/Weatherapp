@@ -38,10 +38,18 @@ class _WindmillIconState extends State<WindmillIcon>
       alignment: Alignment.topCenter,
       children: [
         Container(
-          margin: EdgeInsets.only(top: 15),
-          padding: EdgeInsets.only(top: 5),
-          height: 100,
-          child: Image(image: AssetImage("assets/img/footWindmill.png"))),
+          decoration: BoxDecoration(
+            // border: Border.all(),
+          image: DecorationImage(
+            image: AssetImage("assets/img/footWindmill1.png"),
+            // fit: BoxFit.cover,
+            )
+          ),
+          margin: EdgeInsets.only(top: 29),
+          height: 150,
+          width: 50,
+          // child: Image(image: AssetImage("assets/img/footWindmill.png"))
+          ),
         AnimatedBuilder(
           animation: _controller,
           builder: (BuildContext context, Widget? child) {

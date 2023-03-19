@@ -269,19 +269,18 @@ class CurrentDetail extends StatelessWidget {
                   border: Border(
                       bottom: BorderSide(width: 1, color: Colors.white))),
               child: Row(
-                // ignore: prefer_const_literals_to_create_immutables
                 children: [MyText.baseText(text: 'Gió và áp suất')],
               ),
             ),
             Container(
               height: 130,
-              padding: const EdgeInsets.only(top: 15),
+              // padding: const EdgeInsets.only(top: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                  height: 130,
-                  width: 70,
+                  // height: 130,
+                  // width: 70,
                     // decoration: BoxDecoration(border: Border.all()),
                     child: WindmillIcon(size: 50),
                     // child: const Icon(
@@ -290,14 +289,18 @@ class CurrentDetail extends StatelessWidget {
                     //   color: Colors.white,
                     // ),
                   ),
-                  Column(
-                    children: [
-                      MyText.baseText(
-                          text: this.currentWeather.windDeg.toString()),
-                      MyText.baseText(
-                          text:
-                              this.currentWeather.windSpeed.toString() + ' m/s')
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    // padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        MyText.baseText(
+                            text: this.currentWeather.windDeg.toString()),
+                        MyText.baseText(
+                            text:
+                                this.currentWeather.windSpeed.toString() + ' m/s')
+                      ],
+                    ),
                   ),
                   // ignore: prefer_const_constructors
                   Spacer(
